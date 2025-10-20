@@ -31,7 +31,13 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **Principle I — Library-First Modularity**: Confirm the feature will live under `src/pycraft/` with CLI orchestration only in `cli/`.
+- **Principle II — CLI Contract Fidelity**: Document command name, arguments, stdout/stderr contract, exit codes, and `--json` payload schema.
+- **Principle III — Test-Driven Proof**: List the red-to-green test cases (unit, integration, contract) that will fail before implementation starts.
+- **Principle IV — Traceable Observability**: Describe logging strategy, error messages, and how `--verbose` will surface diagnostics.
+- **Principle V — Incremental Template Delivery**: Verify spec, plan, and tasks keep user stories independent with path-specific work items.
+- **Principle VI — PEP 8 Craftsmanship**: List the tooling (ruff/black/pyright) and `uv` commands that guarantee formatting, linting, and typing.
+- **Principle VII — Kid-Friendly Clarity**: Describe how code, comments, and docs will stay understandable to a 12-year-old audience.
 
 ## Project Structure
 
@@ -102,4 +108,3 @@ directories captured above]
 |-----------|------------|-------------------------------------|
 | [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
 | [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
-

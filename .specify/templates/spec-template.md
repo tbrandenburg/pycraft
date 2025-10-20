@@ -28,6 +28,12 @@
 
 **Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
 
+**CLI Contract**: Command `[cli command] [args]` → stdout (`[human readable output]`) | `--json` (`{...}`) | stderr on failure (`[message]`) | exit codes `[0, >0 mapping]`
+
+**Library Touchpoints**: [`src/pycraft/module.py`: function → responsibility]
+
+**Kid-Friendly Explanation**: [One-sentence story that a 12-year-old can repeat to explain the feature]
+
 **Acceptance Scenarios**:
 
 1. **Given** [initial state], **When** [action], **Then** [expected outcome]
@@ -43,6 +49,12 @@
 
 **Independent Test**: [Describe how this can be tested independently]
 
+**CLI Contract**: Command `[cli command]` (`[args]`) | stdout (`[description]`) | `--json` schema snippet | stderr on failure (`[message]`) | exit codes mapping
+
+**Library Touchpoints**: [`src/pycraft/...`: what changes]
+
+**Kid-Friendly Explanation**: [Explain the change like teaching a friend in middle school]
+
 **Acceptance Scenarios**:
 
 1. **Given** [initial state], **When** [action], **Then** [expected outcome]
@@ -56,6 +68,12 @@
 **Why this priority**: [Explain the value and why it has this priority level]
 
 **Independent Test**: [Describe how this can be tested independently]
+
+**CLI Contract**: Command `[cli command]` (`[args]`) | stdout (`[description]`) | `--json` schema snippet | stderr on failure (`[message]`) | exit codes mapping
+
+**Library Touchpoints**: [`src/pycraft/...`: what changes]
+
+**Kid-Friendly Explanation**: [Keep it simple and playful so a young learner understands]
 
 **Acceptance Scenarios**:
 
@@ -72,8 +90,8 @@
   Fill them out with the right edge cases.
 -->
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+- What happens when [boundary condition]? (Include exit code and stderr expectations)
+- How does system handle [error scenario]? (Describe logs surfaced with `--verbose`)
 
 ## Requirements *(mandatory)*
 
@@ -84,16 +102,18 @@
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: Library module at `src/pycraft/[module].py` MUST expose [function/class] with documented inputs/outputs.
+- **FR-002**: CLI command `[command]` MUST invoke the library module and respect the documented stdout/stderr contract.
+- **FR-003**: Tests in `tests/unit/test_[module].py` MUST fail before implementation and pass afterward.
+- **FR-004**: Integration/contract test in `tests/integration|contract/test_[feature].py` MUST cover user story acceptance.
+- **FR-005**: Logging MUST emit structured key/value details and support `--verbose` toggling.
+- **FR-006**: Repository MUST be managed with `uv` (`uv init`, `uv add`, `uv run`, `uv export --locked`) and document the commands in docs.
+- **FR-007**: Source code MUST pass `uv run ruff check`, `uv run ruff format --check`, and include friendly comments that explain logic in plain language.
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-008**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
+- **FR-009**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
 ### Key Entities *(include if feature involves data)*
 
@@ -113,4 +133,4 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
-
+- **SC-005**: [Learning metric, e.g., "A 12-year-old can retell the feature story after reading the comments"]
