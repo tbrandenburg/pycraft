@@ -1,0 +1,32 @@
+# This lockfile is a placeholder generated during planning.
+# Run `uv export --locked > uv.lock` to regenerate with exact resolved versions.
+[[package]]
+name = "pycraft"
+version = "0.1.0"
+requires = [
+  "ursina>=5.0.0",
+  "pytest>=8.2.0",
+  "ruff>=0.5.0",
+  "black>=24.8.0",
+  "mypy>=1.10.0"
+]
+
+[[package]]
+name = "ursina"
+version = ">=5.0.0"
+
+[[package]]
+name = "pytest"
+version = ">=8.2.0"
+
+[[package]]
+name = "ruff"
+version = ">=0.5.0"
+
+[[package]]
+name = "black"
+version = ">=24.8.0"
+
+[[package]]
+name = "mypy"
+version = ">=1.10.0"

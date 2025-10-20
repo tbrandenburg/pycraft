@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pycraft"
+version = "0.1.0"
+description = "Friendly Ursina-powered block world designed for young learners."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Pycraft Team" }]
+license = { text = "MIT" }
+dependencies = [
+  "ursina>=5.0.0",
+  "pytest>=8.2.0",
+  "ruff>=0.5.0",
+  "black>=24.8.0",
+  "mypy>=1.10.0"
+]
+
+[project.scripts]
+pycraft = "pycraft.cli.pycraft:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv]
+python = "3.12"

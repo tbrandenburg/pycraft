@@ -30,10 +30,10 @@ description: "Task list for Ursina Minecraft Clone feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Configure uv-managed project metadata (Python 3.12, package name, scripts) in pyproject.toml
-- [ ] T002 Declare runtime and tooling dependencies with `uv add` (ursina, pytest, ruff, black, mypy) in pyproject.toml
-- [ ] T003 Export locked dependency snapshot with `uv export --locked > uv.lock`
-- [ ] T004 Add kid-friendly contribution guidelines section to README.md explaining storytelling comments
+- [X] T001 Configure uv-managed project metadata (Python 3.12, package name, scripts) in pyproject.toml
+- [X] T002 Declare runtime and tooling dependencies with `uv add` (ursina, pytest, ruff, black, mypy) in pyproject.toml
+- [X] T003 Export locked dependency snapshot with `uv export --locked > uv.lock`
+- [X] T004 Add kid-friendly contribution guidelines section to README.md explaining storytelling comments
 
 ---
 
@@ -43,13 +43,13 @@ description: "Task list for Ursina Minecraft Clone feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 Scaffold layered package skeleton (src/pycraft/__init__.py and subpackages cli, gameplay, world, physics, persistence, ui)
-- [ ] T006 Create CLI bootstrap module with entrypoint stub in src/pycraft/cli/pycraft.py
-- [ ] T007 Establish configuration for styling tools in ruff.toml
-- [ ] T008 Configure static typing rules for mypy in mypy.ini
-- [ ] T009 Configure pytest defaults and test discovery markers in pytest.ini
-- [ ] T010 Initialize test package layout with __init__.py and conftest helpers in tests/conftest.py
-- [ ] T011 Document save-slot storage expectations for young players in slots/README.md
+- [X] T005 Scaffold layered package skeleton (src/pycraft/__init__.py and subpackages cli, gameplay, world, physics, persistence, ui)
+- [X] T006 Create CLI bootstrap module with entrypoint stub in src/pycraft/cli/pycraft.py
+- [X] T007 Establish configuration for styling tools in ruff.toml
+- [X] T008 Configure static typing rules for mypy in mypy.ini
+- [X] T009 Configure pytest defaults and test discovery markers in pytest.ini
+- [X] T010 Initialize test package layout with __init__.py and conftest helpers in tests/conftest.py
+- [X] T011 Document save-slot storage expectations for young players in slots/README.md
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -65,20 +65,20 @@ description: "Task list for Ursina Minecraft Clone feature implementation"
 
 **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T012 [P] [US1] Author flat-world generation unit test in tests/unit/test_world_generation.py::test_flat_world_height
-- [ ] T013 [P] [US1] Add player movement physics unit test in tests/unit/test_movement.py::test_wasd_moves_player
-- [ ] T014 [P] [US1] Add CLI play JSON integration test in tests/integration/test_cli_play.py::test_play_command_json_contract
+- [X] T012 [P] [US1] Author flat-world generation unit test in tests/unit/test_world_generation.py::test_flat_world_height
+- [X] T013 [P] [US1] Add player movement physics unit test in tests/unit/test_movement.py::test_wasd_moves_player
+- [X] T014 [P] [US1] Add CLI play JSON integration test in tests/integration/test_cli_play.py::test_play_command_json_contract
 
 ### Implementation for User Story 1
 
-- [ ] T015 [P] [US1] Implement flat terrain builder in src/pycraft/world/generator.py
-- [ ] T016 [P] [US1] Implement movement helpers with Ursina colliders in src/pycraft/physics/movement.py
-- [ ] T017 [US1] Implement gameplay controller handling input + camera follow in src/pycraft/gameplay/controller.py
-- [ ] T018 [US1] Orchestrate Ursina engine startup and layer wiring in src/pycraft/app.py
-- [ ] T019 [US1] Wire CLI play command with `--json` and `--verbose` flags in src/pycraft/cli/pycraft.py
-- [ ] T020 [US1] Add cheerful, kid-friendly comments explaining exploration flow in src/pycraft/app.py and src/pycraft/gameplay/controller.py
-- [ ] T021 [US1] Run `uv run pytest -k "(world_generation or movement)"` to confirm US1 tests pass
-- [ ] T022 [US1] Run `uv run ruff check` and `uv run ruff format` on src/pycraft/world/ src/pycraft/gameplay/ src/pycraft/physics/ to ensure PEP 8 compliance
+- [X] T015 [P] [US1] Implement flat terrain builder in src/pycraft/world/generator.py
+- [X] T016 [P] [US1] Implement movement helpers with Ursina colliders in src/pycraft/physics/movement.py
+- [X] T017 [US1] Implement gameplay controller handling input + camera follow in src/pycraft/gameplay/controller.py
+- [X] T018 [US1] Orchestrate Ursina engine startup and layer wiring in src/pycraft/app.py
+- [X] T019 [US1] Wire CLI play command with `--json` and `--verbose` flags in src/pycraft/cli/pycraft.py
+- [X] T020 [US1] Add cheerful, kid-friendly comments explaining exploration flow in src/pycraft/app.py and src/pycraft/gameplay/controller.py
+- [X] T021 [US1] Run `uv run pytest -k "(world_generation or movement)"` to confirm US1 tests pass
+- [X] T022 [US1] Run `uv run ruff check` and `uv run ruff format` on src/pycraft/world/ src/pycraft/gameplay/ src/pycraft/physics/ to ensure PEP 8 compliance
 
 **Checkpoint**: At this point, User Story 1 should be fully functional, test suite green, and CLI contract verified
 

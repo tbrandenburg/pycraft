@@ -1,0 +1,12 @@
+target-version = "py312"
+line-length = 88
+
+[lint]
+select = ["E", "F", "I", "UP", "S", "B", "W"]
+ignore = ["S311"]  # Allow friendly random usage for gameplay if needed
+
+[lint.per-file-ignores]
+"tests/**/*" = ["S101"]
+
+[format]
+docstring-code-format = true
