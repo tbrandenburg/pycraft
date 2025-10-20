@@ -26,6 +26,7 @@ class CLIOptions:
     action: str | None = None
     verbose: bool = False
     output_json: bool = False
+    no_window: bool = False
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -61,6 +62,11 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Show extra log messages for curious debuggers.",
     )
+    play_parser.add_argument(
+        "--no-window",
+        action="store_true",
+        help="Do not open a game window (useful for automated checks).",
+    )
 
     manage_parser = subparsers.add_parser(
         "manage", help="Save or load worlds without starting the game."
@@ -95,6 +101,7 @@ def parse_args(argv: list[str] | None = None) -> CLIOptions:
         action=getattr(args, "action", None),
         verbose=getattr(args, "verbose", False),
         output_json=args.json,
+        no_window=getattr(args, "no_window", False),
     )
 
 
@@ -118,6 +125,7 @@ def main(argv: list[str] | None = None) -> int:
             mode=options.mode,
             load_slot=options.load_slot,
             verbose=options.verbose,
+            headless=options.no_window,
         )
     else:
         result = run_management_action(

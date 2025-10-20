@@ -30,6 +30,8 @@ def test_play_command_json_contract(monkeypatch: pytest.MonkeyPatch) -> None:
 
     printed = json.loads(fake_stdout.getvalue())
 
-    mock_run.assert_called_once_with(mode="survival", load_slot=None, verbose=False)
+    mock_run.assert_called_once_with(
+        mode="survival", load_slot=None, verbose=False, headless=False
+    )
     assert printed == {"status": "starting", "scene": "overworld"}
     assert exit_code == 0

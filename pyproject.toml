@@ -23,6 +23,3 @@ pycraft = "pycraft.cli.pycraft:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.uv]
-python = "3.12"
