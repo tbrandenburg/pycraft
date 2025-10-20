@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: Pycraft CLI Contracts
+  version: 0.1.0
+  description: >
+    HTTP-friendly representation of the CLI commands for automation. Mirrors the
+    `uv run pycraft` commands by exposing JSON payloads.
+servers:
+  - url: http://localhost:8080
+    description: Local automation shim (optional)
+paths:
+  /cli/play:
+    post:
+      summary: Launch the sandbox session
+      operationId: launchPlaySession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [mode, loadSlot, verbose, outputFormat]
+              properties:
+                mode:
+                  type: string
+                  enum: [survival, creative]
+                  default: survival
+                loadSlot:
+                  type: string
+                  description: Save slot to load (use "latest" for newest world)
+                verbose:
+                  type: boolean
+                  default: false
+                outputFormat:
+                  type: string
+                  enum: [text, json]
+                  default: json
+      responses:
+        "200":
+          description: Session started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, scene, mode]
+                properties:
+                  status:
+                    type: string
+                    enum: [starting]
+                  scene:
+                    type: string
+                    example: overworld
+                  mode:
+                    type: string
+                    enum: [survival, creative]
+        "409":
+          description: Engine initialization failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: Invalid payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /worlds/{slot}/save:
+    post:
+      summary: Save the current world state
+      operationId: saveWorld
+      parameters:
+        - name: slot
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[a-z0-9_-]+$'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [metadata]
+              properties:
+                metadata:
+                  type: object
+                  additionalProperties: true
+                  description: Player location, mode, and notes for younger players.
+      responses:
+        "200":
+          description: World saved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, slot, file]
+                properties:
+                  status:
+                    type: string
+                    enum: [saved]
+                  slot:
+                    type: string
+                  file:
+                    type: string
+                    example: slots/latest.world
+        "404":
+          description: Slot not found or inaccessible
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Save failed due to filesystem issue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /worlds/{slot}:
+    get:
+      summary: Load a saved world snapshot
+      operationId: loadWorld
+      parameters:
+        - name: slot
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[a-z0-9_-]+$'
+      responses:
+        "200":
+          description: Save file contents
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, slot, world]
+                properties:
+                  status:
+                    type: string
+                    enum: [loaded]
+                  slot:
+                    type: string
+                  world:
+                    type: object
+                    additionalProperties: true
+                    description: Serialized block/chunk data.
+        "404":
+          description: Slot missing
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Load failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        hint:
+          type: string
+          description: Plain-language tip for young players (e.g., "Check if the save name is spelled right.")
